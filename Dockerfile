@@ -16,5 +16,9 @@ ENV APACHE_LOG_DIR /var/log/httpd
 RUN  cp /tmp/index.html /var/www/html/
 
 EXPOSE 80
+EXPOSE 8080
+EXPOSE 8088
+EXPOSE 50000
 
 CMD ["/usr/sbin/httpd", "-D",  "FOREGROUND"]
+CMD [["/usr/bin/java", "-jar", "/usr/share/jenkins/jenkins.war", "--webroot=/var/cache/jenkins/war", "--httpPort=8080", "--ajp13Port=-1"]]
